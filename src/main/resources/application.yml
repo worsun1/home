@@ -1,11 +1,32 @@
 server:
-  port: 8080
+  port: 8888
 
 query:
   client:
     http:
-      base-url: http://localhost:8081
-      path: /query/{id}
+      base-url: ${QUERY_CLIENT_HTTP_BASE_URL:http://query-service:8082}
+      path: /api/v1/customers/{id}
+      headers:
+        X-API-Key: your-api-key-here
+        User-Agent: home-service-client
+        X-Request-Source: home-service
+        traffic-tag-http: istio-routing-tag
     grpc:
-      host: localhost
-      port: 9090
+      host: ${QUERY_CLIENT_GRPC_HOST:query-service}
+      port: ${QUERY_CLIENT_GRPC_PORT:9092}
+      metadata:
+        request-source: home-service
+        traffic-tag-grpc: istio-routing-tag
+
+# Dubbo configuration
+dubbo:
+  application:
+    name: home-dubbo-consumer
+  registry:
+    address: ${DUBBO_REGISTRY_ADDRESS:zookeeper://zookeeper:2181}
+  consumer:
+    timeout: 3000
+  config-center:
+    address: ${DUBBO_REGISTRY_ADDRESS:zookeeper://zookeeper:2181}
+  metadata-report:
+    address: ${DUBBO_REGISTRY_ADDRESS:zookeeper://zookeeper:2181}
