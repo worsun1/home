@@ -1,6 +1,6 @@
 package com.example.home.config;
 
-import com.example.home.grpc.CustomerServiceGrpc;
+import com.example.common.api.grpc.CustomerServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
