@@ -1,11 +1,33 @@
 server:
-  port: 8080
+  port: 8888
 
 query:
   client:
     http:
-      base-url: http://localhost:8081
-      path: /query/{id}
+      base-url: ${QUERY_CLIENT_HTTP_BASE_URL:http://localhost:8082}
+      path: /api/v1/customers/{id}
+      headers:
+        X-API-Key: your-api-key-here
+        User-Agent: home-service-client
+        X-Request-Source: home-service
+        traffic-tag-http: istio-routing-tag
     grpc:
-      host: localhost
-      port: 9090
+      host: ${QUERY_CLIENT_GRPC_HOST:localhost}
+      port: ${QUERY_CLIENT_GRPC_PORT:9092}
+      metadata:
+        request-source: home-service
+        traffic-tag-grpc: istio-routing-tag
+
+# Dubbo configuration
+dubbo:
+  application:
+    name: home-dubbo-consumer
+    qos-enable: false
+  registry:
+    address: ${DUBBO_REGISTRY_ADDRESS:nacos://localhost:8848}
+    username: ${NACOS_USERNAME:nacos} # Nacos 用户名
+    password: ${NACOS_PASSWORD:nacos} # Nacos 密码
+    namespace: ${NACOS_NAMESPACE:dev} # Nacos 命名空间
+    group: ${NACOS_GROUP:DEVELOP} # Nacos 分组
+  consumer:
+    timeout: 3000
