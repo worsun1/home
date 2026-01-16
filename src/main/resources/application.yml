@@ -11,7 +11,7 @@ query:
         User-Agent: home-service-client
         X-Request-Source: home-service
         traffic-tag-http: istio-routing-tag
-    grpc:dubbo:
+    grpc:
       host: ${QUERY_CLIENT_GRPC_HOST:localhost}
       port: ${QUERY_CLIENT_GRPC_PORT:9092}
       metadata:

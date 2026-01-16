@@ -1,6 +1,6 @@
 package com.example.home.config;
 
-import com.example.home.proto.QueryServiceGrpc;
+import com.example.home.grpc.CustomerServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -33,7 +33,7 @@ public class ClientConfiguration {
     }
 
     @Bean
-    public QueryServiceGrpc.QueryServiceBlockingStub queryServiceBlockingStub(ManagedChannel queryManagedChannel) {
-        return QueryServiceGrpc.newBlockingStub(queryManagedChannel);
+    public CustomerServiceGrpc.CustomerServiceBlockingStub customerServiceBlockingStub(ManagedChannel queryManagedChannel) {
+        return CustomerServiceGrpc.newBlockingStub(queryManagedChannel);
     }
 }

@@ -26,4 +26,9 @@ public class QueryController {
     public QueryResult queryViaGrpc(@PathVariable("id") String id) {
         return gatewayService.queryViaGrpc(id);
     }
+
+    @GetMapping("/dubbo/{id}")
+    public QueryResult queryViaDubbo(@PathVariable("id") String id) {
+        return gatewayService.queryViaDubbo(id);
+    }
 }

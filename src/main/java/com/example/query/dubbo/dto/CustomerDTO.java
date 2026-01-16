@@ -1,4 +1,4 @@
-package com.example.home.dubbo.dto;
+package com.example.query.dubbo.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

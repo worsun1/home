@@ -1,6 +1,6 @@
-package com.example.home.dubbo;
+package com.example.query.dubbo;
 
-import com.example.home.dubbo.dto.CustomerDTO;
+import com.example.query.dubbo.dto.CustomerDTO;
 
 import java.util.List;
 
