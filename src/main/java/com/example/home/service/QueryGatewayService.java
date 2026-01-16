@@ -1,6 +1,6 @@
 package com.example.home.service;
 
-import com.example.home.grpc.CustomerDto;
+import com.example.common.api.grpc.CustomerDto;
 import com.example.home.mapper.QueryResultMapper;
 import com.example.home.model.QueryResult;
 import com.example.home.model.RemoteQueryRecord;

@@ -1,7 +1,7 @@
 package com.example.home.service;
 
-import com.example.query.dubbo.CustomerDubboService;
-import com.example.query.dubbo.dto.CustomerDTO;
+import com.example.common.api.dubbo.CustomerDubboService;
+import com.example.common.api.dubbo.dto.CustomerDTO;
 import com.example.home.model.QueryResult;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Component;

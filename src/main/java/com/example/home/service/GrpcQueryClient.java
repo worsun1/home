@@ -1,11 +1,10 @@
 package com.example.home.service;
 
-import com.example.home.grpc.CustomerDto;
-import com.example.home.grpc.CustomerServiceGrpc;
-import com.example.home.grpc.GetCustomerRequest;
-import com.example.home.grpc.GetCustomerResponse;
-import com.example.home.grpc.SearchCustomersRequest;
-import com.example.home.grpc.SearchCustomersResponse;
+import com.example.common.api.grpc.CustomerServiceGrpc;
+import com.example.common.api.grpc.GetCustomerRequest;
+import com.example.common.api.grpc.GetCustomerResponse;
+import com.example.common.api.grpc.SearchCustomersRequest;
+import com.example.common.api.grpc.SearchCustomersResponse;
 import io.grpc.StatusRuntimeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +26,7 @@ public class GrpcQueryClient {
         this.blockingStub = blockingStub;
     }
 
-    public CustomerDto fetchRecord(String id) {
+    public com.example.common.api.grpc.CustomerDto fetchRecord(String id) {
         GetCustomerRequest request = GetCustomerRequest.newBuilder().setId(Long.parseLong(id)).build();
         try {
             GetCustomerResponse response = blockingStub.getCustomer(request);
@@ -40,7 +39,7 @@ public class GrpcQueryClient {
         }
     }
 
-    public List<CustomerDto> searchCustomers(String name, String email) {
+    public List<com.example.common.api.grpc.CustomerDto> searchCustomers(String name, String email) {
         SearchCustomersRequest request = SearchCustomersRequest.newBuilder()
                 .setName(name != null ? name : "")
                 .setEmail(email != null ? email : "")
